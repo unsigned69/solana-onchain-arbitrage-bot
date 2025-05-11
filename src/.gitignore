@@ -1,0 +1,5 @@
+node_modules/
+pool_finder/config/meteora/
+pool_finder/config/pump/
+pool_finder/config/raydium/
+pool_finder/config/meteora_amm/

@@ -1,0 +1,27 @@
+{
+  "name": "arbitrage-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "touyi",
+  "license": "ISC",
+  "description": "onchain arbitrage bot, supports intelligent routing and calculates optimal arbitrage routes",
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.30.1",
+    "@meteora-ag/dlmm": "1.4.2",
+    "@raydium-io/raydium-sdk-v2": "0.1.118-alpha",
+    "@solana/spl-token": "^0.4.13",
+    "@solana/web3.js": "^1.91.6",
+    "@types/bn.js": "^5.1.6",
+    "axios": "^1.8.4",
+    "bs58": "^6.0.0",
+    "crypto-js": "^4.2.0",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.6",
+    "ioredis": "^5.6.0",
+    "prompt-sync": "^4.2.0",
+    "typescript": "^5.8.2"
+  }
+}
