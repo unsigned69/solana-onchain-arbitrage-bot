@@ -1,6 +1,5 @@
 import { Connection, PublicKey } from '@solana/web3.js'
 import { Fetcher } from './fetcher.js'
-import { RichConfig } from '../utils/arb_pool_config.js';
 
 export class MeteoraAmmFetcher extends Fetcher {
   constructor(pool_key, connection) {

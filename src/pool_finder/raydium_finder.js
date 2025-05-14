@@ -1,27 +1,21 @@
 import { PoolKeyFinder , IsBaseMint, createNewMintXData} from "./pool_finder.js";
-import { WSOL, POOLType } from "../utils/const.js.js"
+import * as utils from "../common/utils.js"
+import * as constants from "../common/constants.js"
 
 import path from "path";
 
-const getYAwaysBaseMint = (x_info, y_info, x_is_base_mint) => {
-    if (x_is_base_mint) {
-        return [y_info, x_info];
-    }
-
-    return [x_info, y_info];
-}
 
 const getPoolTypeByProgramId = (programId)=>{
     if (programId === "675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8") {
-        return POOLType.kRaydiumAMM;
+        return constants.POOLType.kRaydiumAMM;
     }
 
     if (programId === "CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK") {
-        return POOLType.kRaydiumCLMM;
+        return constants.POOLType.kRaydiumCLMM;
     }
 
     if (programId === "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C") {
-        return POOLType.kRaydiumCPMM;
+        return constants.POOLType.kRaydiumCPMM;
     }
 
     return "other";
@@ -50,7 +44,7 @@ export class RaydiumPoolKeyFinder extends PoolKeyFinder {
                 return;
             }
 
-            let [x_info, y_info] =  getYAwaysBaseMint(poolInfo.mintA, poolInfo.mintB, x_type);
+            let [x_info, y_info] = utils.getYAwaysBaseMint(poolInfo.mintA, poolInfo.mintB, x_type);
 
             const base_mint_name = y_info.symbol == "WSOL" ? "SOL": y_info.symbol;
             this.config[x_info.address][0][base_mint_name].push({
@@ -62,6 +56,6 @@ export class RaydiumPoolKeyFinder extends PoolKeyFinder {
     }
 
     getSearchSOLPoolUrl(mintX) {
-        return `https://api-v3.raydium.io/pools/info/mint?mint1=${mintX}&mint2=${WSOL.toString()}&poolType=all&poolSortField=volume24h&sortType=desc&pageSize=20&page=1`
+        return `https://api-v3.raydium.io/pools/info/mint?mint1=${mintX}&mint2=${constants.WSOL.toString()}&poolType=all&poolSortField=volume24h&sortType=desc&pageSize=20&page=1`
     }
 }

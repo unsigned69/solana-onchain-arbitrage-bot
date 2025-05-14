@@ -1,7 +1,6 @@
-import { WSOL, POOLType} from "../utils/const.js.js";
-import { getBaseMintNameByAddress } from "../utils/utils.js.js"
+import * as utils from "../common/utils.js"
+import * as constants from "../common/constants.js"
 import { PoolKeyFinder, createNewMintXData, IsBaseMint } from "./pool_finder.js";
-
 import path from "path";
 
 const getYAwaysBaseMint = (x_info, y_info, x_is_base_mint) => {
@@ -38,7 +37,7 @@ export class PumpPoolKeyFinder extends PoolKeyFinder {
             }
 
             let [x_info, y_info] =  getYAwaysBaseMint({ address: poolInfo.baseMint}, { address: poolInfo.quoteMint}, x_type);
-            const base_mint_name = getBaseMintNameByAddress(y_info.address);
+            const base_mint_name = utils.getBaseMintNameByAddress(y_info.address);
             this.config[x_info.address][0][base_mint_name].push({
                 "type": POOLType.kPumpSwap,
                 "pool_key": poolInfo.address,
@@ -48,6 +47,6 @@ export class PumpPoolKeyFinder extends PoolKeyFinder {
     }
 
     getSearchSOLPoolUrl(mintX) {
-        return `https://swap-api.pump.fun/v1/pools/pair?mintA=${WSOL.toString()}&mintB=${mintX}`;
+        return `https://swap-api.pump.fun/v1/pools/pair?mintA=${constants.WSOL.toString()}&mintB=${mintX}`;
     }
 }

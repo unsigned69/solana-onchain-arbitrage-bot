@@ -1,0 +1,815 @@
+{
+  "address": "DxeQQ7PQ94j26ism5ivTqNHAkteFNmgRpqYx7XQFqs9Z",
+  "metadata": {
+    "name": "arb_touyi",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "arb_process_32_account",
+      "discriminator": [
+        198,
+        43,
+        70,
+        199,
+        55,
+        193,
+        203,
+        81
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "signer": true
+        },
+        {
+          "name": "user_token_base",
+          "writable": true
+        },
+        {
+          "name": "token_base_mint",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "writable": true
+        },
+        {
+          "name": "sys_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_pair_0_user_token_account_x",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "token_pair_0_mint_x",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "recipient",
+          "writable": true,
+          "address": "B2kcKQCZUWvK59w9V9n7oDiFwqrh5FowymgpsKZV5NHu"
+        },
+        {
+          "name": "account_0",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_1",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_2",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_3",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_4",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_5",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_6",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_7",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_8",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_9",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_10",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_11",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_12",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_13",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_14",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_15",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_16",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_17",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_18",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_19",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_20",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_21",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_22",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_23",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_24",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_25",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_26",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_27",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_28",
+          "writable": true,
+          "optional": true
+        }
+      ],
+      "args": [
+        {
+          "name": "max_in",
+          "type": "u64"
+        },
+        {
+          "name": "min_profit",
+          "type": "u64"
+        },
+        {
+          "name": "market_type",
+          "type": "bytes"
+        },
+        {
+          "name": "market_flag",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "arb_process_64_account",
+      "discriminator": [
+        39,
+        254,
+        194,
+        218,
+        233,
+        22,
+        71,
+        203
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "signer": true
+        },
+        {
+          "name": "user_token_base",
+          "writable": true
+        },
+        {
+          "name": "token_base_mint",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "writable": true
+        },
+        {
+          "name": "sys_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_pair_0_user_token_account_x",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "token_pair_0_mint_x",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "recipient",
+          "writable": true,
+          "address": "B2kcKQCZUWvK59w9V9n7oDiFwqrh5FowymgpsKZV5NHu"
+        },
+        {
+          "name": "account_0",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_1",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_2",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_3",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_4",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_5",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_6",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_7",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_8",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_9",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_10",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_11",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_12",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_13",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_14",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_15",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_16",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_17",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_18",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_19",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_20",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_21",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_22",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_23",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_24",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_25",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_26",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_27",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_28",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_29",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_30",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_31",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_32",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_33",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_34",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_35",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_36",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_37",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_38",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_39",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_40",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_41",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_42",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_43",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_44",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_45",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_46",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_47",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_48",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_49",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_50",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_51",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_52",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_53",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_54",
+          "writable": true,
+          "optional": true
+        }
+      ],
+      "args": [
+        {
+          "name": "max_in",
+          "type": "u64"
+        },
+        {
+          "name": "min_profit",
+          "type": "u64"
+        },
+        {
+          "name": "market_type",
+          "type": "bytes"
+        },
+        {
+          "name": "market_flag",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "test_raydium_clmm",
+      "discriminator": [
+        61,
+        119,
+        73,
+        17,
+        40,
+        8,
+        169,
+        176
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "signer": true
+        },
+        {
+          "name": "user_token_base",
+          "writable": true
+        },
+        {
+          "name": "token_base_mint",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "writable": true
+        },
+        {
+          "name": "sys_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_pair_0_user_token_account_x",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "token_pair_0_mint_x",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "recipient",
+          "writable": true,
+          "address": "B2kcKQCZUWvK59w9V9n7oDiFwqrh5FowymgpsKZV5NHu"
+        },
+        {
+          "name": "account_0",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_1",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_2",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_3",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_4",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_5",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_6",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_7",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_8",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_9",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_10",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_11",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_12",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_13",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_14",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_15",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_16",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_17",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_18",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_19",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_20",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_21",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_22",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_23",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_24",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_25",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_26",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_27",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "account_28",
+          "writable": true,
+          "optional": true
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_in",
+          "type": "u64"
+        },
+        {
+          "name": "market_type",
+          "type": "u8"
+        },
+        {
+          "name": "reverse",
+          "type": "bool"
+        },
+        {
+          "name": "y2x",
+          "type": "bool"
+        },
+        {
+          "name": "use_limit",
+          "type": "bool"
+        },
+        {
+          "name": "always_fail",
+          "type": "bool"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidTokenAccount",
+      "msg": "mint error"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidBaseAccount",
+      "msg": "parse base amount error"
+    },
+    {
+      "code": 6002,
+      "name": "NoProfit",
+      "msg": "Not Profit"
+    },
+    {
+      "code": 6003,
+      "name": "FakeProfit",
+      "msg": "Fake Profit"
+    },
+    {
+      "code": 6004,
+      "name": "NoSupportMarket",
+      "msg": "no support market"
+    }
+  ]
+}

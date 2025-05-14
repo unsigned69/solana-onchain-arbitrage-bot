@@ -1,10 +1,3 @@
-
-// import Puppeteer from ""
-
-// function GetHotCoinList() {
-    
-// }
-
 /*
 {
   "mint_x": "abc",
@@ -31,9 +24,9 @@
 import fs from "fs";
 import path from "path";
 import https from "https";
-import { USDC, USDT, WSOL } from "../utils/const.js.js";
+import * as constants from "../common/constants.js";
 
-let BaseMint = ["WSOL", "SOL", "USDC", "USDT", WSOL.toString(), USDC.toString(), USDT.toString()];
+let BaseMint = ["WSOL", "SOL", "USDC", "USDT", constants.WSOL.toString(), constants.USDC.toString(), constants.USDT.toString()];
 export function IsBaseMint(symbol) {
   return BaseMint.includes(symbol);
 }
@@ -67,7 +60,7 @@ export class PoolKeyFinder {
 
     loadLocalCache() {
         if (!fs.existsSync(this.configCachePath)) {
-            fs.mkdirSync(this.configCachePath);
+            fs.mkdirSync(this.configCachePath, { recursive: true });
         }
 
         fs.readdirSync(this.configCachePath).forEach(subFileName => {

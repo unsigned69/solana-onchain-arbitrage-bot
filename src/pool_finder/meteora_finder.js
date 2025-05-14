@@ -1,7 +1,8 @@
 import { PoolKeyFinder, createNewMintXData, IsBaseMint} from "./pool_finder.js";
-import { POOLType } from "../utils/const.js.js"
+import * as utils from "../common/utils.js"
+import * as constants from "../common/constants.js"
+
 import path from "path";
-import { getYAwaysBaseMint } from "../utils/utils.js.js";
 
 export class MeteoraPoolKeyFinder extends PoolKeyFinder {
     constructor() {
@@ -27,11 +28,11 @@ export class MeteoraPoolKeyFinder extends PoolKeyFinder {
                     return;
                 }
 
-                let [x_info, y_info] =  getYAwaysBaseMint({ address: poolInfo.mint_x, symbol: xMintName}, { address: poolInfo.mint_y, symbol: yMintName}, x_type);
+                let [x_info, y_info] =  utils.getYAwaysBaseMint({ address: poolInfo.mint_x, symbol: xMintName}, { address: poolInfo.mint_y, symbol: yMintName}, x_type);
 
                 const base_mint_name = y_info.symbol == "WSOL" ? "SOL": y_info.symbol;
                 this.config[x_info.address][0][base_mint_name].push({
-                    "type": POOLType.kMeteoraDLMM,
+                    "type": constants.POOLType.kMeteoraDLMM,
                     "pool_key": poolInfo.address,
                     "meta": {}
                 });
