@@ -9,45 +9,31 @@ import {
 import {
     createAssociatedTokenAccountInstruction,
     getAssociatedTokenAddressSync,
-    createSyncNativeInstruction
+    createSyncNativeInstruction,
+    createCloseAccountInstruction
 } from '@solana/spl-token';
+import { globalConfig } from "../config.js";
 import fs from 'fs';
+import * as utils from "../common/utils.js";
+import * as constants from "../common/constants.js";
+
 // 连接到Solana网络
-const connection = new Connection('https://mainnet.helius-rpc.com/?api-key=e4829446-181d-47e1-a466-b099184296c7', 'confirmed');
+const connection = new Connection(globalConfig.base.rpcUrl)
 
-const contract_wallet_path = '/home/touyi/sol/tmp/keys/main_test.json';
+const wallet = utils.createKeyPairWithConfig(globalConfig);
+console.log(`wallet: ${wallet.publicKey.toString()}`);
 
-function readJsonFileSync(filePath) {
-    // 1. 同步读取文件内容
-    const rawData = fs.readFileSync(filePath, 'utf-8');
-
-    // 2. 解析 JSON
-    const parsedData = JSON.parse(rawData);
-    return parsedData;
-}
-
-const wallet_secret = readJsonFileSync(contract_wallet_path);
-
-
-// 你的钱包密钥对
-const wallet = Keypair.fromSecretKey(new Uint8Array(wallet_secret));
-
-// SOL的Mint地址
-const solMint = new PublicKey('So11111111111111111111111111111111111111112');
-
-const amount = 10000000; // 要转换的SOL数量，以lamports为单位，1 SOL = 10^9 lamports
-
-const convertSolToWsol = async () => {
+const convertSolToWsol = async (amount) => {
     // 获取WSOL的关联令牌账户地址
     const associatedTokenAccount = getAssociatedTokenAddressSync(
-        solMint,
+        constants.WSOL,
         wallet.publicKey
     );
 
     // 创建交易对象
     const transaction = new Transaction();
 
-    // 如果关联令牌账户不存在，则创建它
+    // 如果关联账户不存在，则创建它
     const accountInfo = await connection.getAccountInfo(associatedTokenAccount);
     if (!accountInfo) {
         transaction.add(
@@ -55,7 +41,7 @@ const convertSolToWsol = async () => {
                 wallet.publicKey,
                 associatedTokenAccount,
                 wallet.publicKey,
-                solMint
+                constants.WSOL
             )
         );
     }
@@ -77,7 +63,81 @@ const convertSolToWsol = async () => {
         [wallet]
     );
 
-    console.log('Transaction signature:', signature);
+    console.log('SOL to WSOL Transaction signature:', signature);
 };
 
-convertSolToWsol();
+
+
+const convertWsolToSol = async () => {
+    // 获取WSOL的关联令牌账户地址
+    const associatedTokenAccount = getAssociatedTokenAddressSync(
+        constants.WSOL,
+        wallet.publicKey
+    );
+
+    // 创建交易对象
+    const transaction = new Transaction();
+
+    // 添加关闭关联令牌账户的指令，将WSOL转换回SOL
+    transaction.add(
+        createCloseAccountInstruction(
+            associatedTokenAccount,
+            wallet.publicKey,
+            wallet.publicKey,
+            []
+        )
+    );
+
+    // 发送并确认交易
+    const signature = await sendAndConfirmTransaction(
+        connection,
+        transaction,
+        [wallet]
+    );
+
+    console.log('WSOL to SOL Transaction signature:', signature);
+};
+
+(async () => {
+    let amount;
+    let wrapSol = true;
+    for (let i = 2; i < process.argv.length; i++) {
+        const arg = process.argv[i];
+        if (arg.startsWith('--amount=')) {
+            const value = arg.split('=')[1];
+            amount = parseFloat(value);
+            if (isNaN(amount)) {
+                console.error('错误：amount 参数必须是有效的数字。');
+                showUsage();
+                process.exit(1);
+            }
+        } else if (arg === '--close') {
+            wrapSol = false;
+        } else {
+            console.error(`错误：未知参数 ${arg}。`);
+            showUsage();
+            process.exit(1);
+        }
+    }
+
+    // 检查是否提供了必要参数
+    if (amount === undefined) {
+        console.error('错误：必须提供 amount 参数。');
+        showUsage();
+        process.exit(1);
+    } else {
+        // console.log(`amount: ${amount}, wrapSol: ${wrapSol}`);
+        if (wrapSol) {
+            await convertSolToWsol(amount);
+        } else {
+            await convertWsolToSol();
+        }
+    }
+
+    // 使用提示函数
+    function showUsage() {
+        console.log('将sol转换为wsol\n使用方法: node warp_sol.js --amount=<lamport数量> [--close]');
+        console.log('  --amount=<数字>  要转换的数量，必须是数字。');
+        console.log('  --close       关闭wsol，返还所有sol。');
+    }
+})();
