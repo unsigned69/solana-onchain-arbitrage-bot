@@ -9,7 +9,7 @@ export const globalConfig = {
     },
     // 套利机器人配置
     "bot": {
-        // 1 wsol, 最大用于购买的wsol数量, 单位lamports
+        // 1 wsol, 最大用于购买的wsol数量, 单位lamports, 限制最大输入，实际输入通过套利路径最优计算得到
         "maxInputAmount": 1000000000, 
         // 最小利润, 单位lamports,如果交易最终利润小于该值，交易会报错
         "minProfit": 1000, 
