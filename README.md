@@ -14,7 +14,7 @@ solana onchain arbitrage bot, supports intelligent routing and calculates optima
 对于合约端（合约地址：DxeQQ7PQ94j26ism5ivTqNHAkteFNmgRpqYx7XQFqs9Z）
 
 * 接收客户端提交的交易池
-* 自动计算最优套利路径以及最优输入（如有），并发起套利操作
+* 自动计算最优套利路径以及最优输入（如有），并发起套利操作，否则交易返回失败
 
 目前已经支持的交易池，后续会持续新增
 
