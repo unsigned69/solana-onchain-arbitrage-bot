@@ -84,5 +84,7 @@ TODO
 
 https://t.me/+t3Gexbnw0rs5NWQ1
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/touyi/solana-onchain-arbitrage-bot)
+
 
 
