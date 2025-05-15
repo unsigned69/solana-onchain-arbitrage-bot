@@ -63,7 +63,7 @@ dex一般都是直接使用wsol来交易，所以在启动交易的时候需要�
 在src/tools目录下执行：`node warp_sol.js --amount=1000000000`
 其中amount是lamport单位的sol数量
 当需要关闭wsol退回sol是执行`node warp_sol.js --amount=1000000000 --close`
-
+> 需要保证转换的数量需要大于config.js 配置中的maxInputAmount 配置字段
 * ## 启动运行
 
 在src目录下执行：`node main.js`
