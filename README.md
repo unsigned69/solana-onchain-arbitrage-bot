@@ -43,6 +43,7 @@ bash install.sh
 * ## 基本配置
 
 solana-onchain-arbitrage-bot/src/config.js
+
 config.js 中的一下配置必须填写，screctKey和screctKeyBase58填写一个即可
 
 ```
