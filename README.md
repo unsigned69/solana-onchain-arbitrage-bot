@@ -4,7 +4,7 @@
 支持智能路由，计算最优套利路线
 solana onchain arbitrage bot, supports intelligent routing and calculates optimal arbitrage routes
 
-# 基本介绍
+# 📝基本介绍
 
 本仓库是基于合约智能路由的套利机器人，分为客户端和合约端，本仓库是客户端，主要功能：
 
@@ -28,7 +28,7 @@ solana onchain arbitrage bot, supports intelligent routing and calculates optima
 > **使用本套利机器人对于成功套利的交易，收取利润的10%作为手续费，如果套利失败，或者无利润，本合约不收取任何手续费。**
 > 例如套利 输入0.5 sol，输出0.6 sol，利润就是0.1sol，手续费为0.1 * 10% = 0.01 sol
 
-# 快速开始
+# 🚀快速开始
 
 * ## 安装环境
 
@@ -66,11 +66,14 @@ dex一般都是直接使用wsol来交易，所以在启动交易的时候需要�
 > 需要保证转换的数量需要大于config.js 配置中的maxInputAmount 配置字段
 * ## 启动运行
 
-在src目录下执行：`node main.js`
+在src目录下执行：
+```bash
+node main.js
+```
 
 > **注意**：套利的用户中间代币账户（例如trump）如果不存在，机器人会自动创建，无需手动创建；如果存在，请确保该账户余额为空
 
-# 套利原理
+# 🌟套利原理
 
 对于任意两个交易池，如果存在价格差，则可能通过套利来获取利润，假设：
   * 在交易池1中使用a个SOL买入b个代币X
@@ -85,7 +88,7 @@ dex一般都是直接使用wsol来交易，所以在启动交易的时候需要�
 限制于合约算力，目前只支持一跳最优路径计算，即：SOL->X->SOL, 合约会对输入的所以交易池两两配对，计算出最优套利的配对路径，然后按照最优路径进行套利。如果所有路径都无法套利，则不会进行套利。并且合约会报错，使得交易失败
 
 
-# 如何信任？
+# 📅如何信任？
 
 因为合约代码并不开源，所以让人担心的问题就是：
 * 我的私钥会不会被上传？
@@ -112,21 +115,21 @@ dex一般都是直接使用wsol来交易，所以在启动交易的时候需要�
 TODO
 
 
-# 高级用法
+# 💰高级用法
 
 TODO
 
-# 后续计划
+# 📌后续计划
 
 * jito 发送
 * Kamino
 * 高热币监控
 
-# 交流群
+# 📚交流群
 
 https://t.me/+t3Gexbnw0rs5NWQ1
 
-# 代码分析
+# 📜代码分析
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/touyi/solana-onchain-arbitrage-bot)
 
