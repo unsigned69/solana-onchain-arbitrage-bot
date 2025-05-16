@@ -30,7 +30,7 @@ solana onchain arbitrage bot, supports intelligent routing and calculates optima
 
 # 🚀快速开始
 
-* ## 安装环境
+## 安装环境
 
 > 目前只支持一键linux系统安装
 
@@ -40,7 +40,7 @@ solana onchain arbitrage bot, supports intelligent routing and calculates optima
 bash install.sh
 ```
 
-* ## 基本配置
+## 基本配置
 
 solana-onchain-arbitrage-bot/src/config.js
 
@@ -57,14 +57,15 @@ config.js 中的一下配置必须填写，screctKey和screctKeyBase58填写一�
     },
 ```
 
-* ## 转换wsol
+## 转换wsol
 
 dex一般都是直接使用wsol来交易，所以在启动交易的时候需要先在账户中转换好等量的wsol，使用仓库中提供的脚本进行转换：
 在src/tools目录下执行：`node warp_sol.js --amount=1000000000`
 其中amount是lamport单位的sol数量
 当需要关闭wsol退回sol是执行`node warp_sol.js --amount=1000000000 --close`
 > 需要保证转换的数量需要大于config.js 配置中的maxInputAmount 配置字段
-* ## 启动运行
+
+## 启动运行
 
 在src目录下执行：
 ```bash
