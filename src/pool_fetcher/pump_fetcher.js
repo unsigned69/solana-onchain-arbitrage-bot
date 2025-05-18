@@ -31,6 +31,9 @@ export class PumpSwapFetcher extends Fetcher {
         this.authorith = new PublicKey("GS4CU59F31iL7aR2Q8zVS8DRrcRnXX1yjQ66TqNVQnaR")
         this.pool_program = new PublicKey("pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA")
         this.protocol_receiver_account = null;
+
+        this.coin_creator_vault_ata = null;
+        this.coin_creator_auth = null;
     }
 
     async incrmentFetch() {
@@ -57,8 +60,22 @@ export class PumpSwapFetcher extends Fetcher {
             this.base_mint_pool = new PublicKey(account.data.subarray(8 + 3 + 32 + 32 + 32 + 32, 8 + 3 + 32 + 32 + 32 + 32 + 32))
             this.quote_mint_pool = new PublicKey(account.data.subarray(8 + 3 + 32 + 32 + 32 + 32 + 32, 8 + 3 + 32 + 32 + 32 + 32 + 32 + 32))
 
+
+            const creator = new PublicKey(account.data.subarray(8 + 3 + 32 + 32 + 32 + 32 + 32 + 32 + 8, 8 + 3 + 32 + 32 + 32 + 32 + 32 + 32 + 8 + 32))
+
             this.protocol_receiver_account = PublicKey.findProgramAddressSync([
                 this.protocol_receiver.toBuffer(),
+                TOKEN_PROGRAM_ID.toBuffer(),
+                this.quote_mint.toBuffer(),
+            ], ASSOCIATED_TOKEN_PROGRAM_ID)[0]
+
+            this.coin_creator_auth = PublicKey.findProgramAddressSync([
+                "creator_vault",
+                creator.toBuffer(),
+            ], this.pool_program)[0];
+
+            this.coin_creator_vault_ata = PublicKey.findProgramAddressSync([
+                this.coin_creator_auth.toBuffer(),
                 TOKEN_PROGRAM_ID.toBuffer(),
                 this.quote_mint.toBuffer(),
             ], ASSOCIATED_TOKEN_PROGRAM_ID)[0]
@@ -78,6 +95,8 @@ export class PumpSwapFetcher extends Fetcher {
         input_accounts.push(this.protocol_receiver_account);
         input_accounts.push(ASSOCIATED_TOKEN_PROGRAM_ID);
         input_accounts.push(this.authorith);
+        input_accounts.push(this.coin_creator_vault_ata);
+        input_accounts.push(this.coin_creator_auth);
         
         return input_accounts;
     }
