@@ -173,7 +173,7 @@ Catch the `SendTransactionError` and call `getLogs()` on it for full details.
 
 # 💰高级用法（自定义合约调用）
 
-面向具有一定编码能力人群，可以自己实现客户端，实现自己的交易组装和发送策略币监控并提交套利交易。
+面向具有一定编码能力人群，可以自己实现客户端，实现自己的交易组装和发送币策略并提交套利交易。
 
 ## 套利合约的输入定义：
 ### Account输入
@@ -234,7 +234,7 @@ pub struct CommonAccountsInfo32<'info> {
  
 * 基本账户（accounts）
 
-这部分账户安装上述代码填写即可
+这部分账户按照上述代码填写即可
 
 * 交易池账户
 
