@@ -41,22 +41,32 @@ export class ArbBot {
         this.maxSendRate = config.bot.maxSendRate; // x tx/s
         this.maxAmountIn = config.bot.maxInputAmount;
         this.minProfit = config.bot.minProfit;
-
+        this.guardContractIDL = config.base.guardContractIDL;
 
         const provider = new AnchorProvider(
             this.connection,
             new Wallet(this.userKeypair),
         )
-        // 读取当前文件相对路径的json文件 ../idl/arbitrage.json
+        
         const readJsonFileSync = (filePath) => {
             const absolutePath = new URL(filePath, import.meta.url).pathname;
             const fileContent = fs.readFileSync(absolutePath, 'utf8');
             return JSON.parse(fileContent);
         }
-        const idl = readJsonFileSync("../idl/idl.json");
-        this.program = new Program(
-            idl,
-            provider);
+        
+        
+        if (this.guardContractIDL && fs.existsSync(this.guardContractIDL)) {
+            const idl = readJsonFileSync(this.guardContractIDL);
+            this.program = new Program(
+                idl,
+                provider);
+            console.log("guardContractIDL:", this.guardContractIDL)
+        } else {
+            const idl = readJsonFileSync("../idl/idl.json");
+            this.program = new Program(
+                idl,
+                provider);
+        }
     }
 
     
@@ -96,7 +106,7 @@ export class ArbBot {
                 console.log("processMintX: length no support :", mintX)
                 return;
             }
-            
+
             const handler = new MintXHandler(mintX, mintXData, this.connection, true);
             await handler.init();
             await utils.createATATokenAccount(handler.getMintX(), this.connection, this.userKeypair, true);
@@ -153,6 +163,7 @@ export class ArbBot {
             ], ASSOCIATED_TOKEN_PROGRAM_ID)[0],
             tokenPair0MintX: handler.getMintX(),
             recipient: constants.RECIPIENT,
+            arb_program: constants.ARB_PROGRAM,
         }
 
         for (let i = 0; i < markets_accounts.length; i++) {

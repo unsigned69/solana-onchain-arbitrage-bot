@@ -6,6 +6,8 @@ export const globalConfig = {
         "screctKey": [], 
         // 钱包私钥base58编码字符串 screctKey和screctKeyBase58 2个填一个即可
         "screctKeyBase58": "", 
+        // 如果使用防损失合约提交，请填写防损失合约IDL文件路径
+        "guardContractIDL": "",
     },
     // 套利机器人配置
     "bot": {
@@ -27,13 +29,6 @@ export const globalConfig = {
     },
     // 需要监听套利的mint列表，自己任意修改
     "mintList": [
-        "25Ew9oMprcypdK2KbecFE6Btvy5HChaDYUmLdm7aLinK",
-        "2F8Pb5MzMQZuMzrN5wAefYv8cTUnkR6KfoxcKSzspump",
-        "2hJBZzXhuX8XguKfQQCiwMC9jPfKpLtygYXEFZjAKR44",
-        "2MDr15dTn6km3NWusFcnZyhq3vWpYDg7vWprghpzbonk",
-        "2MVxsMJLqTRPX9RqqDWKNis3fqY9ccQXc9wip11Qpump",
-        "2uHvhSasjzHm4PPAWaVpuU7yKtd4yUGYx6WK2oxutQnm",
-        "2VqtrBXmgkNa3oeJwgnBUdNL5yJhq8kddqYtPVGKbonk",
         "38PgzpJYu2HkiYvV8qePFakB8tuobPdGm2FFEn7Dpump",
         "3eKQT9xueHxgUnSHpgVXP26Jrf6LZ2JK95RkEz58pump",
         "3Me8e8S8rzJD8z9HQdshSHg5q7cspyUUNJ8ygoa5iivQ",

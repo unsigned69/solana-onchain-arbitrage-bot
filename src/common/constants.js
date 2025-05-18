@@ -14,3 +14,5 @@ export const USDT = new PublicKey("Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"
 
 
 export const RECIPIENT = new PublicKey("B2kcKQCZUWvK59w9V9n7oDiFwqrh5FowymgpsKZV5NHu");
+
+export const ARB_PROGRAM = new PublicKey("DxeQQ7PQ94j26ism5ivTqNHAkteFNmgRpqYx7XQFqs9Z");

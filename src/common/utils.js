@@ -98,15 +98,15 @@ export function getYAwaysBaseMint(x_info, y_info, x_is_base_mint) {
 
 
 export function getBaseMintNameByAddress(base_mint) {
-    if (base_mint == WSOL.toString()) {
+    if (base_mint == constants.WSOL.toString()) {
         return "SOL";
     }
 
-    if (base_mint == USDT.toString()) {
+    if (base_mint == constants.USDT.toString()) {
         return "USDT"
     }
 
-    if (base_mint == USDC.toString()) {
+    if (base_mint == constants.USDC.toString()) {
         return "USDC"
     }
 

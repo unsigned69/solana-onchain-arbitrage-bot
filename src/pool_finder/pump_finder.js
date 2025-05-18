@@ -39,7 +39,7 @@ export class PumpPoolKeyFinder extends PoolKeyFinder {
             let [x_info, y_info] =  getYAwaysBaseMint({ address: poolInfo.baseMint}, { address: poolInfo.quoteMint}, x_type);
             const base_mint_name = utils.getBaseMintNameByAddress(y_info.address);
             this.config[x_info.address][0][base_mint_name].push({
-                "type": POOLType.kPumpSwap,
+                "type": constants.POOLType.kPumpSwap,
                 "pool_key": poolInfo.address,
                 "meta": {}
             });
