@@ -10,6 +10,13 @@ import { Connection,
     Transaction } from "@solana/web3.js";
 import fs from "fs";
 import bs58 from "bs58";
+
+// 监听 uncaughtException 事件
+process.on('uncaughtException', (error) => {
+    console.error('未捕获的异常:', error);
+    console.error('完整堆栈信息:', error.stack);
+});
+
 export function IsSupportPool(type) {
     if (type == constants.POOLType.kPumpSwap) {
         return true;
