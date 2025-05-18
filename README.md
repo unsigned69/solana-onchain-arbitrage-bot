@@ -44,7 +44,7 @@ bash install.sh
 
 solana-onchain-arbitrage-bot/src/config.js
 
-config.js 中的一下配置必须填写，screctKey和screctKeyBase58填写一个即可
+config.js 中的以下配置必须填写，screctKey和screctKeyBase58填写一个即可
 
 ```
 "base": {
@@ -240,7 +240,7 @@ pub struct CommonAccountsInfo32<'info> {
 
 交易池账户是按照一定的规则填写，下面以pumpswap举例说明如何填写交易池账户：
 
-![image](https://github.com/lexsaints/powershell/blob/master/IMG/ps2.png)
+![image](https://github.com/touyi/solana-onchain-arbitrage-bot/blob/main/assets/pump.png)
 
 对于每个交易池，如果要调用cpi并完成swap操作，交易池是需要一些输入账户的，如上图可以考到sell指令需要19 + 1=20个账户（+1是pumpswap Program的账户），那么在套利合约的输入中，就需要需要预留20个账户（account_0 - account_19）用于合约填充交易池的输入账户。
 
@@ -294,7 +294,7 @@ pub fn arb_process_32_account(
 
 翻转池的使用是为了方便统一抽象，对于所有的交易池，池中都是一个交易对，即2个交易token，例如对于pump的这个交易对5wNu5QhdpRGrL37ffcd6TMMqZugQgxwafgz477rShtHy，在交易池的pool信息中一般都会记录这两个token的mint，我们按照记录的先后顺序，对第一个token叫做Token_X，第二个叫做Token_Y，如下：
 
-![image](https://github.com/lexsaints/powershell/blob/master/IMG/ps2.png)
+![image](https://github.com/touyi/solana-onchain-arbitrage-bot/blob/main/assets/Snipaste_2025-05-18_21-37-06.png)
 
 Token_X是`Ce2gx9KGXJ6C9Mp5b5x1sn9Mg87JwEbrQby4Zqo3pump`
 
