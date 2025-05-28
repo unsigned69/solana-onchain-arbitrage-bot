@@ -109,7 +109,6 @@ export class ArbBot {
 
             const handler = new MintXHandler(mintX, mintXData, this.connection, true);
             await handler.init();
-            await utils.createATATokenAccount(handler.getMintX(), this.connection, this.userKeypair, true);
             this.runningMintX.push(handler);
             this.runningMintX = [...this.runningMintX.slice(-this.maxRunningMintX)]
             console.log("processMintX Success:", mintX)

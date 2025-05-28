@@ -56,6 +56,10 @@
           "address": "B2kcKQCZUWvK59w9V9n7oDiFwqrh5FowymgpsKZV5NHu"
         },
         {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
           "name": "account_0",
           "writable": true,
           "optional": true
@@ -267,6 +271,10 @@
           "name": "recipient",
           "writable": true,
           "address": "B2kcKQCZUWvK59w9V9n7oDiFwqrh5FowymgpsKZV5NHu"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
         },
         {
           "name": "account_0",
@@ -610,6 +618,10 @@
           "name": "recipient",
           "writable": true,
           "address": "B2kcKQCZUWvK59w9V9n7oDiFwqrh5FowymgpsKZV5NHu"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
         },
         {
           "name": "account_0",
