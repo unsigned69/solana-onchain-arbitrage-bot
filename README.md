@@ -47,7 +47,7 @@ bash install.sh
 solana-onchain-arbitrage-bot/src/config.js
 
 config.js 中的以下配置必须填写，screctKey和screctKeyBase58填写一个即可
-
+### 密钥
 ```
 "base": {
         // rpc 请求url
@@ -58,16 +58,7 @@ config.js 中的以下配置必须填写，screctKey和screctKeyBase58填写一�
         "screctKeyBase58": "", 
     },
 ```
-
-## 转换wsol
-
-dex一般都是直接使用wsol来交易，所以在启动交易的时候需要先在账户中转换好等量的wsol，使用仓库中提供的脚本进行转换：
-在src/tools目录下执行：`node warp_sol.js --amount=1000000000`
-其中amount是lamport单位的sol数量
-当需要关闭wsol退回sol是执行`node warp_sol.js --amount=1000000000 --close`
-> 需要保证转换的数量需要大于config.js 配置中的maxInputAmount 配置字段，默认配置`1000000000`即1WSOL
-
-## 设置监听的mint
+### 设置监听的mint
 在配置中添加需要监听的mint，会自动拉取mint相关的pump raydium Meteora的pool，用于套利
 ```json
 // 需要监听套利的mint列表，自己任意修改，
@@ -77,6 +68,17 @@ dex一般都是直接使用wsol来交易，所以在启动交易的时候需要�
 ...
 ],
 ```
+
+## 转换wsol
+
+dex一般都是直接使用wsol来交易，所以在启动交易的时候需要先在账户中转换好等量的wsol，使用仓库中提供的脚本进行转换：
+在src/tools目录下执行：`node warp_sol.js --amount=1000000000`
+其中amount是lamport单位的sol数量
+当需要关闭wsol退回sol是执行`node warp_sol.js --amount=1000000000 --close`
+> 需要保证转换的数量需要大于config.js 配置中的maxInputAmount 配置字段，默认配置`1000000000`即1WSOL
+
+
+
 
 ## 启动运行
 
