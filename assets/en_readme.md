@@ -315,7 +315,7 @@ Since our current arbitrage support is limited to WSOL, we need to ensure that `
 If you have more questions or need to report bugs, please join our discussion group: https://t.me/+t3Gexbnw0rs5NWQ1
 
 ## 📌 Future Plans
-
+- refactor by rust(doing)
 - Support for Jito transactions
 - Integration with Kamino
 - Monitoring of high-volume tokens
