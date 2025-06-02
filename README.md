@@ -320,7 +320,7 @@ Token_Y是`So11111111111111111111111111111111111111112`
 如果有更多疑问或bug反馈欢迎加入交流群讨论：https://t.me/+t3Gexbnw0rs5NWQ1
 
 # 📌后续计划
-* rust重构
+* rust重构（doing）
 * jito 发送
 * Kamino
 * 高热币监控
