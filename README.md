@@ -340,6 +340,32 @@ Since our current arbitrage support is limited to WSOL, we need to ensure that `
 
 If you have more questions or need to report bugs, please join our discussion group: https://t.me/+t3Gexbnw0rs5NWQ1
 
+## 🛡 Production Monitoring
+
+The bot runs a heartbeat that checks the Solana RPC and optional DEX endpoints.
+Results are written to `logs/health-*.log`. When the check fails three times in
+a row an **ALERT** level message is sent to Telegram. Recovery triggers an
+**INFO** notification.
+
+Add a `telegram` section to your configuration:
+
+```json
+"telegram": {
+  "enabled": true,
+  "botToken": "YOUR_BOT_TOKEN",
+  "chatId": "CHAT_ID",
+  "profitNotify": false
+}
+```
+
+Message levels:
+
+- **CRITICAL/ALERT** – engine crash, heartbeat failure or RPC outage
+- **ERROR** – transaction or arbitrage problems
+- **WARNING** – unusual but recoverable issues
+- **PROFIT** – optional trade reports (enable with `profitNotify`)
+- **INFO** – startup and recovery messages
+
 ## 🛠 Custom Error Classes
 
 The core uses a hierarchy of errors to make debugging and recovery easier:

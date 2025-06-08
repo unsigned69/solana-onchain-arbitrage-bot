@@ -21,5 +21,11 @@
   "address_lookup_tables": [
     "8xXRCZ18hs6dpwkgLMasgRoZStPRPJi2Dg6z54kSiWTE"
   ],
-  "dryRun": true
+  "dryRun": true,
+  "telegram": {
+    "enabled": false,
+    "botToken": "",
+    "chatId": "",
+    "profitNotify": false
+  }
 }

@@ -27,11 +27,21 @@ export class DexAdapter {
   }
 
   /**
-   * Create swap transactions from a list of pools.
+   * Fetch price info for pools.
+   * @param {Array} pools
+   * @returns {Promise<Array>}
+   */
+  async fetchPrices(pools) {
+    return pools;
+  }
+
+  /**
+   * Build swap transaction from pools and prices.
    * @param {Array} pools fetched pool objects
+   * @param {Array} prices price info
    * @returns {Promise<void>}
    */
-  async createSwapTransaction(pools) {
+  async buildTx(pools, prices) {
     throw new Error('Not implemented');
   }
 }

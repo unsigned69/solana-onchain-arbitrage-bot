@@ -21,11 +21,15 @@ export class RaydiumAdapter extends DexAdapter {
     }
   }
 
+  async fetchPrices(pools) {
+    return pools.map(p => ({ ...p, price: 0 }));
+  }
+
   /**
    * Placeholder transaction builder.
    * @param {Array} _pools
    */
-  async createSwapTransaction(_pools) {
+  async buildTx(_pools, _prices) {
     // Implementation would create VersionedTransaction using fetched pools
   }
 }

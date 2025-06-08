@@ -9,7 +9,8 @@ import { PoolFetchError } from '../utils/errors.js';
 class EmptyAdapter extends DexAdapter {
   constructor() { super('empty'); this.called = false; }
   async fetchPools() { return []; }
-  async createSwapTransaction() { this.called = true; }
+  async fetchPrices(p) { return p; }
+  async buildTx() { this.called = true; }
 }
 
 class ErrorAdapter extends DexAdapter {

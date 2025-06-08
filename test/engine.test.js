@@ -8,6 +8,7 @@ import { DexAdapter } from '../dex_adapters/baseAdapter.js';
 class MockAdapter extends DexAdapter {
   constructor() { super('mock'); }
   async fetchPools() { return []; }
+  async fetchPrices(p) { return p; }
 }
 
 test('engine initialize does not throw', async () => {
