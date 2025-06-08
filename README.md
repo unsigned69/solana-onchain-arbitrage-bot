@@ -26,6 +26,25 @@ The currently supported trading pools will be continuously expanded in the futur
 
 > **For successful arbitrage trades using this arbitrage bot, a 10% fee of the profit will be charged. If the arbitrage fails or there is no profit, the contract will not charge any fees.** For example, if you input 0.5 SOL and output 0.6 SOL, the profit is 0.1 SOL, and the fee is 0.1 * 10% = 0.01 SOL.
 
+## 🔧 Architecture Overview
+
+The repository is organised into several top level folders:
+
+- `core/` – stateless arbitrage engine orchestrating the flow
+- `dex_adapters/` – one module per DEX implementing a common interface
+- `contracts/` – on-chain program interaction code
+- `config/` – configuration files and validation helpers
+- `logger/` – centralised logging with daily rotation
+- `utils/` – pure utility helpers
+- `test/` – unit tests
+
+### Adding a new DEX adapter
+
+1. Create a class extending `DexAdapter` in `dex_adapters/`.
+2. Implement at least `initialize(connection)` and `fetchPools(mint)`.
+3. Optionally provide `createSwapTransaction(pools)` for transaction generation.
+4. Instantiate your adapter in `start.js`.
+
 ## 🚀 Quick Start
 
 ### Install the Environment

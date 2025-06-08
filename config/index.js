@@ -1,6 +1,15 @@
 import fs from 'fs';
 import Joi from 'joi';
 
+/**
+ * @typedef {Object} Config
+ * @property {{rpcUrl:string,screctKey:number[],screctKeyBase58:string,guardContractIDL:string}} base
+ * @property {{maxInputAmount:number,minProfit:number,maxSendRate:number,maxIOConcurrent:number,skipPreflight:boolean,mintXExpirationTime:number}} bot
+ * @property {string[]} mintList
+ * @property {string[]} [address_lookup_tables]
+ * @property {boolean} dryRun
+ */
+
 const schema = Joi.object({
   base: Joi.object({
     rpcUrl: Joi.string().uri().required(),
@@ -24,7 +33,7 @@ const schema = Joi.object({
 /**
  * Load and validate configuration file.
  * @param {string} [path] Path to config JSON file.
- * @returns {object} validated configuration object
+ * @returns {Config} validated configuration object
  */
 export function loadConfig(path = new URL('./config.json', import.meta.url).pathname) {
   const raw = fs.readFileSync(path, 'utf8');
