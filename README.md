@@ -1,8 +1,11 @@
 # Pay attention! This bot was refactored via CODEX from OpeanAI. At the moment this is an experiment. All changes, improvements, and enhancements will be carried out by AI.
 
+
 # 🌟 Star Break 388 Open Source Arbitrage Contract
 
+
 # Solana On-Chain Arbitrage Bot
+
 
 ## 📜 Code Analysis
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)]([https://deepwiki.com/touyi/solana-onchain-arbitrage-bot](https://deepwiki.com/unsigned69/solana-onchain-arbitrage-bot))
