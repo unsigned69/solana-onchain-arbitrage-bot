@@ -33,7 +33,8 @@ const schema = Joi.object({
     enabled: Joi.boolean().default(false),
     botToken: Joi.string().allow('').optional(),
     chatId: Joi.string().allow('').optional(),
-    profitNotify: Joi.boolean().default(false)
+    profitNotify: Joi.boolean().default(false),
+    infoNotify: Joi.boolean().default(true)
   }).default({ enabled: false })
 });
 

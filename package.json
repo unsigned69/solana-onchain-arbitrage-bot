@@ -1,0 +1,24 @@
+{
+  "name": "solana-onchain-arbitrage-bot",
+  "version": "1.0.0",
+  "description": "Supports intelligent routing and calculates optimal arbitrage routes. This is a Solana on-chain arbitrage bot that supports intelligent routing and calculates optimal arbitrage routes.",
+  "main": "start.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_PATH=./node_modules node --experimental-specifier-resolution=node --test test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@solana/web3.js": "^1.98.2",
+    "joi": "^17.13.3",
+    "nock": "^14.0.5",
+    "node-fetch": "^3.3.2",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  }
+}

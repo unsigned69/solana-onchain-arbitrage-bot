@@ -47,6 +47,6 @@ test('double fee scenario', async () => {
   const adapter = new ProfitAdapter([{ profit: 2 }, { profit: 2 }, { profit: 2 }]);
   const engine = new ArbitrageEngine(cfg, new Connection(cfg.base.rpcUrl), [adapter]);
   const [res] = await engine.processMint('mint');
-  assert.equal(res.fee, 0.3);
+  assert.ok(Math.abs(res.fee - 0.3) < 1e-9);
   assert.equal(res.profit, 5.7);
 });

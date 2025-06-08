@@ -41,7 +41,7 @@ export class ArbitrageEngine {
    * @param {Array} pools
    */
   simulateTransaction(adapterName, pools) {
-    const fee = pools.length * 0.1;
+    const fee = Number((pools.length * 0.1).toFixed(2));
     const gross = pools.reduce((a, p) => a + (p.profit || 0), 0);
     const profit = gross - fee;
     this.logger.dryRun(
