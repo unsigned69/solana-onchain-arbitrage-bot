@@ -2,6 +2,9 @@
  * Base class for DEX adapters.
  */
 export class DexAdapter {
+  /**
+   * @param {string} name human readable adapter name
+   */
   constructor(name) {
     this.name = name;
   }
@@ -24,10 +27,11 @@ export class DexAdapter {
   }
 
   /**
-   * Create swap transactions (placeholder).
+   * Create swap transactions from a list of pools.
+   * @param {Array} pools fetched pool objects
    * @returns {Promise<void>}
    */
-  async createSwapTransaction() {
+  async createSwapTransaction(pools) {
     throw new Error('Not implemented');
   }
 }

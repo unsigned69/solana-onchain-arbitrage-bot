@@ -3,6 +3,10 @@ import 'winston-daily-rotate-file';
 
 let logger;
 
+/**
+ * Get shared logger instance.
+ * @returns {import('winston').Logger}
+ */
 export function getLogger() {
   if (logger) return logger;
 
