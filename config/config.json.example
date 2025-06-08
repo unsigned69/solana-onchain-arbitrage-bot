@@ -1,0 +1,30 @@
+{
+  "base": {
+    "rpcUrl": "https://api.mainnet-beta.solana.com",
+    "screctKey": [],
+    "screctKeyBase58": "YOUR_BASE58_PRIVATE_KEY",
+    "guardContractIDL": ""
+  },
+  "bot": {
+    "maxInputAmount": 1000000000,
+    "minProfit": 500,
+    "maxSendRate": 5,
+    "maxIOConcurrent": 2,
+    "skipPreflight": false,
+    "mintXExpirationTime": 1200
+  },
+  "mintList": [
+    "TOKEN_MINT_ADDRESS"
+  ],
+  "address_lookup_tables": [
+    "ALT_ADDRESS"
+  ],
+  "dryRun": true,
+  "telegram": {
+    "enabled": false,
+    "botToken": "",
+    "chatId": "",
+    "profitNotify": false,
+    "infoNotify": true
+  }
+}

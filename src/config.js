@@ -1,34 +1,34 @@
 export const globalConfig = {
     "base": {
-        // rpc 请求url
-        "rpcUrl": "https://api.mainnet-beta.solana.com", 
-        // 钱包私钥,32个数字 screctKey和screctKeyBase58 2个填一个即可
-        "screctKey": [], 
-        // 钱包私钥base58编码字符串 screctKey和screctKeyBase58 2个填一个即可
-        "screctKeyBase58": "", 
-        // 如果使用防损失合约提交，请填写防损失合约IDL文件路径
+        // RPC request URL
+        "rpcUrl": "https://api.mainnet-beta.solana.com",
+        // Wallet secret key as an array of 32 numbers. Fill either screctKey or screctKeyBase58
+        "screctKey": [],
+        // Wallet secret key encoded in base58. Fill either screctKey or screctKeyBase58
+        "screctKeyBase58": "",
+        // Path to the guard contract IDL file if using the loss protection contract
         "guardContractIDL": "",
     },
-    // 套利机器人配置
+    // Arbitrage bot settings
     "bot": {
-        // 1 wsol, 最大用于购买的wsol数量, 单位lamports, 限制最大输入，实际输入通过套利路径最优计算得到
-        "maxInputAmount": 1000000000, 
-        // 最小利润, 单位lamports,如果交易最终利润小于该值，交易会报错
-        "minProfit": 500, 
-        // 最大交易发送数率，每秒发送的最大交易数，用于控制交易发送的速度
+        // Maximum WSOL to spend in lamports. Actual input is calculated by the optimal path
+        "maxInputAmount": 1000000000,
+        // Minimum profit in lamports. Below this value a trade is rejected
+        "minProfit": 500,
+        // Maximum number of transactions per second
         "maxSendRate": 5,
-        // 单进程异步并发数量，用于控制异步构造交易的并发数量，主要是异步IO，在js中始终无法超过单线程
+        // Async concurrency for building transactions. Limited by Node.js single thread
         "maxIOConcurrent": 2,
-        // 进程并发数量，用于控制进程的并发数量，会启动多个进程
+        // Process concurrency (disabled by default)
         // "maxProcessConcurrent": 2,
 
-        // 是否跳过仿真，跳过仿真会直接发送交易
+        // Skip simulation and send transactions directly
         "skipPreflight": false,
-        // mint 重新获取pool时间间隔，单位秒
+        // Time between mint pool refreshes in seconds
         "mintXExpirationTime": 60 * 20,
     },
-    // 需要监听套利的mint列表，自己任意修改，
-    // 可以直接去爬gmgn的热榜数据：https://gmgn.ai/?chain=sol&1ren=0&1fr=1&1bu=0&1di=0&0fr=0
+    // List of mints to watch for arbitrage. Modify as you like.
+    // Example hot tokens can be scraped from https://gmgn.ai/?chain=sol&1ren=0&1fr=1&1bu=0&1di=0&0fr=0
     "mintList": [
         "FrYz8JgpmxHFjrd8Lbzr3V8tVT37CKswSxm2yd4qbonk",
         "BY5zKtZW1cd7GJUc7AoqSPkvfeBrUEV4pAL3QabPPUMP",
@@ -109,9 +109,8 @@ export const globalConfig = {
         "DX3v7Agdh7R9rWFJsmnNiB7wCtjneBJng9jM9Yk8qZrJ",
         "3qVpCnqdaJtARzE2dYuCy5pm8X2NgF5hx9q9GosPpump",
     ],
-    // address_lookup_tables,
+    // Address lookup tables used to shrink transaction size. Replace or add your own ALT addresses
     "address_lookup_tables": [
-        // 这个alt提供了一些交易池的公共地址（例如Program，authority等），以减少交易的体积, 也可以替换为其他的，支持多个
         "8xXRCZ18hs6dpwkgLMasgRoZStPRPJi2Dg6z54kSiWTE",
     ],
     

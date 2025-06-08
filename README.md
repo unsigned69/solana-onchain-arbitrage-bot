@@ -48,30 +48,43 @@ The repository is organised into several top level folders:
 
 ## 🚀 Quick Start
 
-### Install the Environment
+### 1. Install Node.js
 
-> Currently, only one-click installation on Linux systems is supported.
+Download and install the LTS version of Node.js (18 or higher) from [nodejs.org](https://nodejs.org/).
 
-Execute the following command in the root directory:
+### 2. Get the code
+
+Clone the repository or download the ZIP archive and unpack it.
+
+### 3. Install dependencies
 
 ```bash
-bash install.sh
+npm install
 ```
 
-### Basic Configuration
+### 4. Create your config
 
-The following configurations in `solana-onchain-arbitrage-bot/src/config.js` must be filled in. You only need to fill in either `screctKey` or `screctKeyBase58`.
-
-```javascript
-"base": {
-    // RPC request URL
-    "rpcUrl": "https://api.mainnet-beta.solana.com", 
-    // Wallet private key, an array of 32 numbers. Fill in either screctKey or screctKeyBase58.
-    "screctKey": [], 
-    // Wallet private key in Base58-encoded string. Fill in either screctKey or screctKeyBase58.
-    "screctKeyBase58": "", 
-}
+```bash
+cp config/config.json.example config/config.json
 ```
+
+Edit `config/config.json` and set your RPC URL, wallet key and optional Telegram token and chat ID.
+
+### 5. Check your setup
+
+```bash
+node start.js --check
+```
+
+If you see `✅ All checks passed!` you are ready to continue.
+
+### 6. First run in dry mode
+
+```bash
+node start.js --dry-run
+```
+
+No real transactions will be sent. Once everything works, run `node start.js` without `--dry-run`.
 
 ### Convert SOL to Wrapped SOL (WSOL)
 
@@ -415,6 +428,24 @@ try {
   throw new PoolFetchError(adapter.name, e);
 }
 ```
+
+## ❓ FAQ
+
+**Bot does not start**
+
+Run `node start.js --check` and fix any reported issues. Ensure you are using Node.js 18+.
+
+**RPC connection failed**
+
+Verify the `rpcUrl` in `config.json` and check your internet connection.
+
+**No Telegram messages**
+
+Make sure `telegram.enabled` is `true` and both `botToken` and `chatId` are filled in.
+
+**Bot runs but no trades**
+
+There may be no profitable opportunities. Try lowering `minProfit` or monitoring other tokens.
 
 ## 📌 Future Plans
 - refactor by rust(doing)
