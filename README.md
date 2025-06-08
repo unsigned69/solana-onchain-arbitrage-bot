@@ -340,14 +340,14 @@ Since our current arbitrage support is limited to WSOL, we need to ensure that `
 
 If you have more questions or need to report bugs, please join our discussion group: https://t.me/+t3Gexbnw0rs5NWQ1
 
-## 🛎 Оповещения и мониторинг
+## 🛎 Alerts and monitoring
 
-Бот может присылать уведомления в Telegram. Создайте бота через BotFather и
-возьмите `botToken`, а `chatId` получите из своего чата. Эти значения можно
-указать в конфиге или через переменные окружения `TELEGRAM_TOKEN` и
+The bot can send notifications to Telegram. Create a bot via BotFather and
+take `botToken`, and get `chatId` from your chat. These values
+can be specified in the config or via the environment variables `TELEGRAM_TOKEN` and
 `TELEGRAM_CHAT_ID`.
 
-Пример секции `telegram` в `config.json`:
+Example of the `telegram` section in `config.json`:
 
 ```json
 "telegram": {
@@ -359,16 +359,16 @@ If you have more questions or need to report bugs, please join our discussion gr
 }
 ```
 
-Доступны уровни сообщений:
+Available message levels:
 
-- **CRITICAL** – фатальный сбой, невозможность работы
-- **ALERT** – heartbeat несколько раз подряд неудачен
-- **ERROR** – проблемы транзакций или адаптеров
-- **WARNING** – необычное состояние, низкий профит
-- **PROFIT** – отчёт о сделке (по флагу `profitNotify`)
-- **INFO** – запуск и восстановление (по флагу `infoNotify`)
+- **CRITICAL** – fatal failure, inability to work
+- **ALERT** – heartbeat failed several times in a row
+- **ERROR** – transaction or adapter problems
+- **WARNING** – unusual condition, low profit
+- **PROFIT** – transaction report (by `profitNotify` flag)
+- **INFO** – startup and recovery (by `infoNotify` flag)
 
-Примеры сообщений:
+Message examples:
 
 ```
 🚨 [ALERT] HEARTBEAT
