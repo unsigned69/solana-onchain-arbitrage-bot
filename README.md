@@ -1,7 +1,11 @@
 # Pay attention! This bot was refactored via CODEX from OpeanAI. At the moment this is an experiment. All changes, improvements, and enhancements will be carried out by AI.
+
 # 🌟 Star Break 388 Open Source Arbitrage Contract
+
 # Solana On-Chain Arbitrage Bot
 
+## 📜 Code Analysis
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)]([https://deepwiki.com/touyi/solana-onchain-arbitrage-bot](https://deepwiki.com/unsigned69/solana-onchain-arbitrage-bot))
 Supports intelligent routing and calculates optimal arbitrage routes. This is a Solana on-chain arbitrage bot that supports intelligent routing and calculates optimal arbitrage routes.
 
 ## 📝 Basic Introduction
@@ -431,33 +435,317 @@ try {
 
 ## ❓ FAQ
 
-**Bot does not start**
+ FAQ for Solana On-Chain Arbitrage Bot
+1. Installation & Launch
+Q: What do I need to run the bot?
+A:
 
-Run `node start.js --check` and fix any reported issues. Ensure you are using Node.js 18+.
+Windows, Linux, or MacOS
 
-**RPC connection failed**
+Node.js version 18.x or higher (download here)
 
-Verify the `rpcUrl` in `config.json` and check your internet connection.
+Telegram (optional, for alerts)
 
-**No Telegram messages**
+Solana wallet and RPC endpoint
 
-Make sure `telegram.enabled` is `true` and both `botToken` and `chatId` are filled in.
+Q: How do I install and start the bot?
+A:
 
-**Bot runs but no trades**
+Unzip the archive or clone the repository
 
-There may be no profitable opportunities. Try lowering `minProfit` or monitoring other tokens.
+Open a terminal/command prompt in the project folder
 
-## 📌 Future Plans
-- refactor by rust(doing)
-- Support for Jito transactions
-- Integration with Kamino
-- Monitoring of high-volume tokens
+Run:
+
+nginx
+Копировать
+Редактировать
+npm install
+Copy the example config:
+
+arduino
+Копировать
+Редактировать
+cp config/config.json.example config/config.json
+Edit config.json with your details (wallet, rpcUrl, Telegram bot if needed)
+
+Check your setup:
+
+pgsql
+Копировать
+Редактировать
+node start.js --check
+First run should be in dry run mode:
+
+pgsql
+Копировать
+Редактировать
+node start.js --dry-run
+If all is OK and there are no errors, run for real:
+
+nginx
+Копировать
+Редактировать
+node start.js
+2. Config Basics
+Q: Where do I get the correct config.json?
+A:
+
+The repo/archive includes config/config.json.example
+
+Just copy it as config.json and fill in your details
+
+Q: How do I get a Solana RPC endpoint?
+A:
+
+You can use public endpoints:
+
+https://api.mainnet-beta.solana.com
+
+Or free ones from https://quicknode.com, https://helius.xyz, https://blockdaemon.com
+
+For best results, use your own endpoint to avoid rate limits
+
+Q: How do I create a wallet and get a private key?
+A:
+
+Easiest is Phantom or Sollet wallet
+
+Export the private key as a base58 string or an array of numbers (see the example config)
+
+Q: How do I get a Telegram bot token and chatId?
+A:
+
+Token: Use @BotFather to create a bot
+
+chatId: Write to @userinfobot or add the bot to your chat/group
+
+See the Telegram section in the README for more details
+
+3. Startup Issues
+Q: Error “Node.js version too low!”
+A:
+
+Download and install Node.js 18.x or higher from the official site
+
+Check your version:
+
+nginx
+Копировать
+Редактировать
+node -v
+Q: “config.json not found!”
+A:
+
+Copy config/config.json.example to config/config.json and fill in your details
+
+Q: “rpcUrl not defined” or “RPC connection error”
+A:
+
+Double-check the rpcUrl field in your config
+
+Try a different RPC if your current one is down
+
+Make sure your internet connection is working
+
+Q: “Private key is invalid” error
+A:
+
+Check the privateKey field in config.json
+
+Must be a base58 string or an array of numbers
+
+Never share your private key!
+
+Q: “Telegram error: botToken or chatId missing”
+A:
+
+Check the Telegram section in your config.json
+
+If you don’t want Telegram alerts, set "enabled": false
+
+4. Common Usage Questions
+Q: How do I know the bot is working?
+A:
+
+The console will show messages like:
+
+yaml
+Копировать
+Редактировать
+✅ Bot started, mode: dry run
+INFO: Checking DEX Raydium...
+PROFIT: Found a potential trade!
+If Telegram alerts are enabled, you’ll get messages about profits or errors
+
+Q: Can I run the bot on a different RPC or wallet?
+A:
+
+Yes, just change the settings in config.json
+
+Always test with dry run after making changes
+
+Q: How do I stop the bot?
+A:
+
+Press Ctrl+C in the console/terminal
+
+For auto-start setups, use systemd, pm2, or similar tools (see README)
+
+5. Telegram Alerts
+Q: How do I enable or disable Telegram alerts?
+A:
+
+In config.json, under the telegram section:
+
+"enabled": true — enabled
+
+"enabled": false — disabled
+
+Q: Not getting Telegram messages!
+A:
+
+Double-check botToken and chatId
+
+Make sure the bot isn’t muted or blocked
+
+Check your internet
+
+Try sending a test alert with --check
+
+Q: How do I get only critical alerts, not everything?
+A:
+
+In config.json, set profitNotify: false to disable profit notifications — only errors and critical events will be sent
+
+6. Trading and Profit Issues
+Q: Bot isn’t trading, only shows INFO messages
+A:
+
+Check your minProfit setting — maybe it’s too strict
+
+Make sure the chosen tokens are actually traded on your DEX
+
+Check your RPC for lag or connectivity issues
+
+Q: “No pools for token X” error
+A:
+
+Token may be delisted or have low liquidity
+
+Try different tokens or pools
+
+Q: Bot made a losing trade or no profit
+A:
+
+Always test in dry run mode first!
+
+Double-check your fee and slippage settings
+
+Adjust your minProfit and limits as needed — market conditions may have changed
+
+7. Operations, Updates, Migration
+Q: How do I update the bot to a new version?
+A:
+
+Download the latest archive or do a git pull
+
+Backup your old config.json
+
+Replace the files
+
+Check if the config format changed — see example config for new parameters
+
+Reinstall dependencies:
+
+nginx
+Копировать
+Редактировать
+npm install
+Q: How do I move the bot to another computer?
+A:
+
+Copy the entire project folder and your config.json
+
+Install Node.js
+
+Run npm install and test
+
+8. Security
+Q: Is it safe to keep my private key in config.json?
+A:
+
+Never share your config.json with anyone
+
+Don’t store config.json in public folders or cloud drives without protection
+
+For extra safety, use .env files for secrets
+
+Q: Can I run multiple bots with the same wallet?
+A:
+
+Not recommended: it can cause conflicts and duplicate trades
+
+Use a separate wallet for each bot/instance
+
+9. Frequent Errors & Solutions
+Q: Bot won’t start, exits without message
+A:
+
+Did you copy and edit config.json?
+
+Run with --check:
+
+pgsql
+Копировать
+Редактировать
+node start.js --check
+Q: “Heartbeat fail” or “RPC not responding”
+A:
+
+RPC or network issue — try a different RPC or wait for Solana to recover
+
+Check https://status.solana.com
+
+Restart the bot after connectivity is restored
+
+Q: No profit trades, even though the market is moving
+A:
+
+Check your minProfit, slippage, fee settings
+
+Try lowering your thresholds if needed
+
+10. Other / Additional
+Q: Where are the bot’s logs?
+A:
+
+Logs are printed to the console by default
+
+You can configure file logging via logger settings if needed
+
+Q: Is there auto-update?
+A:
+
+No, update manually
+
+Watch for updates on GitHub (or community chat/support)
+
+Q: How do I add a new DEX or token?
+A:
+
+To add a token: just add it to the tokens list in config.json
+
+To add a new DEX: see the “Adding Adapters” section in the README — usually, copy and adjust an existing adapter
+
+If you can’t find your question — check the README, look in chats, or contact support/the developer!
+
+Happy hunting for profit!
+If something’s not working — ask! Any question is better than a silly mistake with real money :)
 
 ## 📚 Discussion Group
 
 For questions or bug reports, please join our discussion group:
 https://t.me/+t3Gexbnw0rs5NWQ1
 
-## 📜 Code Analysis
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/touyi/solana-onchain-arbitrage-bot)
