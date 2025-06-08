@@ -133,6 +133,12 @@ The message `Error Message: Not Profit.` indicates that the bot has started runn
 
 If you want all transactions to be broadcasted to the blockchain, you can configure `bot: "skipPreflight": false,`. After this configuration, all transactions will be broadcasted. However, note that even if a transaction fails, you will still incur gas fees.
 
+Dry run mode can be toggled without editing the config by setting the `DRY_RUN` environment variable to `true` or `false`:
+
+```bash
+DRY_RUN=true node start.js
+```
+
 > **Note**: If the user's intermediate token account (e.g., trump) for arbitrage does not exist, the bot will automatically create it. If it exists, please ensure that the account balance is zero.
 
 ## 🌟 Arbitrage Principle
@@ -333,6 +339,26 @@ The concept of flipped pools is introduced for convenient and unified abstractio
 Since our current arbitrage support is limited to WSOL, we need to ensure that `Token_Y` in each trading pool is WSOL. If not, we need to flip the trading pool (the client does not flip the accounts during construction but simply passes an additional `market_flag` to indicate that `Token_Y` in this pool is not WSOL, and the contract will handle the flipping).
 
 If you have more questions or need to report bugs, please join our discussion group: https://t.me/+t3Gexbnw0rs5NWQ1
+
+## 🛠 Custom Error Classes
+
+The core uses a small hierarchy of errors to make debugging easier:
+
+- `PoolFetchError` – thrown when a DEX adapter fails to fetch pools.
+- `TxBuildError` – indicates a failure constructing a swap transaction.
+- `NetworkError` – wraps RPC or network related problems.
+
+Example usage:
+
+```javascript
+import { PoolFetchError } from './utils/errors.js';
+
+try {
+  await adapter.fetchPools(mint);
+} catch (e) {
+  throw new PoolFetchError(adapter.name, e);
+}
+```
 
 ## 📌 Future Plans
 - refactor by rust(doing)

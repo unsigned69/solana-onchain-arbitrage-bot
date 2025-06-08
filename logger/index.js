@@ -19,11 +19,16 @@ export function getLogger() {
   logger = winston.createLogger({
     level: 'info',
     format: winston.format.combine(
+      winston.format.errors({ stack: true }),
       winston.format.timestamp(),
-      winston.format.printf(({ level, message, timestamp }) => `${timestamp} [${level}] ${message}`)
+      winston.format.printf(({ level, message, timestamp, stack }) =>
+        `${timestamp} [${level}] ${stack || message}`
+      )
     ),
     transports: [transport, new winston.transports.Console()]
   });
+
+  logger.dryRun = msg => logger.info(`[DRY RUN] ${msg}`);
 
   return logger;
 }

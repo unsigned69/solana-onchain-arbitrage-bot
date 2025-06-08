@@ -1,5 +1,6 @@
 import { getLogger } from '../logger/index.js';
-import { PoolFetchError } from '../utils/errors.js';
+import { PoolFetchError, TxBuildError, NetworkError } from '../utils/errors.js';
+import { handleNetworkError } from '../utils/errorHandler.js';
 
 /**
  * Asynchronous arbitrage engine independent from concrete DEX.
@@ -27,9 +28,28 @@ export class ArbitrageEngine {
    */
   async initialize() {
     for (const adapter of this.adapters) {
+      if (!adapter) continue;
       await adapter.initialize(this.connection);
     }
     this.logger.info('Engine initialized');
+  }
+
+  /**
+   * Simulate arbitrage transaction for dry run mode.
+   * @param {string} adapterName
+   * @param {Array} pools
+   */
+  simulateTransaction(adapterName, pools) {
+    const profit = (Math.random() * 10).toFixed(2);
+    const fee = (Math.random()).toFixed(4);
+    const slippage = (Math.random() * 0.5).toFixed(2);
+    this.logger.dryRun(
+      `${adapterName} simulate -> pools:${pools.length} profit:${profit} fee:${fee} slippage:${slippage}`
+    );
+    if (Math.random() < 0.1) {
+      const err = new TxBuildError(adapterName, new Error('Simulation tx error'));
+      this.logger.error(err);
+    }
   }
 
   /**
@@ -40,18 +60,27 @@ export class ArbitrageEngine {
    */
   async processMint(mint) {
     for (const adapter of this.adapters) {
+      if (!adapter) continue;
       try {
         const pools = await adapter.fetchPools(mint);
         this.logger.info(`${adapter.name} pools for ${mint}: ${pools?.length ?? 0}`);
         if (pools.length) {
           if (this.config.dryRun) {
-            this.logger.info(`Dry run: skipping tx creation for ${adapter.name}`);
+            this.simulateTransaction(adapter.name, pools);
           } else {
-            await adapter.createSwapTransaction(pools);
+            try {
+              await adapter.createSwapTransaction(pools);
+            } catch (err) {
+              throw new TxBuildError(adapter.name, err);
+            }
           }
         }
       } catch (e) {
-        this.logger.error(new PoolFetchError(adapter.name, e).message);
+        if (e instanceof NetworkError) {
+          handleNetworkError(e);
+        } else {
+          this.logger.error(new PoolFetchError(adapter.name, e).message);
+        }
       }
     }
   }

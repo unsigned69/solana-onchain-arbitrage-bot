@@ -42,5 +42,8 @@ export function loadConfig(path = new URL('./config.json', import.meta.url).path
   if (error) {
     throw new Error(`Config validation failed: ${error.message}`);
   }
+  if (process.env.DRY_RUN !== undefined) {
+    value.dryRun = process.env.DRY_RUN === 'true';
+  }
   return value;
 }
