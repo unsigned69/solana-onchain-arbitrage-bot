@@ -1,0 +1,25 @@
+{
+  "base": {
+    "rpcUrl": "https://api.mainnet-beta.solana.com",
+    "screctKey": [],
+    "screctKeyBase58": "",
+    "guardContractIDL": ""
+  },
+  "bot": {
+    "maxInputAmount": 1000000000,
+    "minProfit": 500,
+    "maxSendRate": 5,
+    "maxIOConcurrent": 2,
+    "skipPreflight": false,
+    "mintXExpirationTime": 1200
+  },
+  "mintList": [
+    "FrYz8JgpmxHFjrd8Lbzr3V8tVT37CKswSxm2yd4qbonk",
+    "BY5zKtZW1cd7GJUc7AoqSPkvfeBrUEV4pAL3QabPPUMP",
+    "H7xJEp3eCEYozScbZKZoL7kSAXnJV7VEUGkksx6dpump"
+  ],
+  "address_lookup_tables": [
+    "8xXRCZ18hs6dpwkgLMasgRoZStPRPJi2Dg6z54kSiWTE"
+  ],
+  "dryRun": true
+}
