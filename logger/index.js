@@ -7,10 +7,10 @@ let logger;
  * Get shared logger instance.
  * @returns {import('winston').Logger}
  */
-export function getLogger() {
-  if (logger) return logger;
+export function getLogger(opts = {}) {
+  if (logger && !opts.forceNew) return logger;
 
-  const transport = new winston.transports.DailyRotateFile({
+  const defaultTransport = new winston.transports.DailyRotateFile({
     filename: 'logs/app-%DATE%.log',
     datePattern: 'YYYY-MM-DD',
     maxFiles: '14d'
@@ -25,7 +25,7 @@ export function getLogger() {
         `${timestamp} [${level}] ${stack || message}`
       )
     ),
-    transports: [transport, new winston.transports.Console()]
+    transports: opts.transports || [defaultTransport, new winston.transports.Console()]
   });
 
   logger.dryRun = msg => logger.info(`[DRY RUN] ${msg}`);

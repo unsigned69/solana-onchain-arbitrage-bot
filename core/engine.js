@@ -40,16 +40,13 @@ export class ArbitrageEngine {
    * @param {Array} pools
    */
   simulateTransaction(adapterName, pools) {
-    const profit = (Math.random() * 10).toFixed(2);
-    const fee = (Math.random()).toFixed(4);
-    const slippage = (Math.random() * 0.5).toFixed(2);
+    const fee = pools.length * 0.1;
+    const gross = pools.reduce((a, p) => a + (p.profit || 0), 0);
+    const profit = gross - fee;
     this.logger.dryRun(
-      `${adapterName} simulate -> pools:${pools.length} profit:${profit} fee:${fee} slippage:${slippage}`
+      `${adapterName} simulate -> pools:${pools.length} profit:${profit.toFixed(2)} fee:${fee.toFixed(2)}`
     );
-    if (Math.random() < 0.1) {
-      const err = new TxBuildError(adapterName, new Error('Simulation tx error'));
-      this.logger.error(err);
-    }
+    return { profit, fee };
   }
 
   /**
@@ -59,6 +56,7 @@ export class ArbitrageEngine {
    * @returns {Promise<void>}
    */
   async processMint(mint) {
+    const results = [];
     for (const adapter of this.adapters) {
       if (!adapter) continue;
       try {
@@ -66,7 +64,7 @@ export class ArbitrageEngine {
         this.logger.info(`${adapter.name} pools for ${mint}: ${pools?.length ?? 0}`);
         if (pools.length) {
           if (this.config.dryRun) {
-            this.simulateTransaction(adapter.name, pools);
+            results.push(this.simulateTransaction(adapter.name, pools));
           } else {
             try {
               await adapter.createSwapTransaction(pools);
@@ -77,12 +75,13 @@ export class ArbitrageEngine {
         }
       } catch (e) {
         if (e instanceof NetworkError) {
-          handleNetworkError(e);
+          await handleNetworkError(e);
         } else {
           this.logger.error(new PoolFetchError(adapter.name, e).message);
         }
       }
     }
+    return results;
   }
 
   /**

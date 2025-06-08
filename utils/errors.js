@@ -8,8 +8,24 @@ export class ArbitrageError extends Error {
   }
 }
 
+/** Error due to invalid configuration. */
+export class ConfigError extends ArbitrageError {
+  constructor(msg) {
+    super(`Configuration error: ${msg}`);
+    this.name = 'ConfigError';
+  }
+}
+
+/** Generic data related error. */
+export class DataError extends ArbitrageError {
+  constructor(msg) {
+    super(`Data error: ${msg}`);
+    this.name = 'DataError';
+  }
+}
+
 /** Error thrown when fetching pools from a DEX fails. */
-export class PoolFetchError extends ArbitrageError {
+export class PoolFetchError extends DataError {
   /**
    * @param {string} dexName DEX adapter name
    * @param {Error} original original error
@@ -30,6 +46,15 @@ export class TxBuildError extends ArbitrageError {
   constructor(dexName, original) {
     super(`Failed to build transaction for ${dexName}: ${original.message}`);
     this.name = 'TxBuildError';
+    this.original = original;
+  }
+}
+
+/** Error thrown when calling an external API fails. */
+export class ExternalApiError extends ArbitrageError {
+  constructor(msg, original) {
+    super(`External API error: ${msg}${original ? ` - ${original.message}` : ''}`);
+    this.name = 'ExternalApiError';
     this.original = original;
   }
 }

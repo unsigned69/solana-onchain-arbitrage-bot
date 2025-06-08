@@ -342,11 +342,19 @@ If you have more questions or need to report bugs, please join our discussion gr
 
 ## 🛠 Custom Error Classes
 
-The core uses a small hierarchy of errors to make debugging easier:
+The core uses a hierarchy of errors to make debugging and recovery easier:
 
-- `PoolFetchError` – thrown when a DEX adapter fails to fetch pools.
-- `TxBuildError` – indicates a failure constructing a swap transaction.
-- `NetworkError` – wraps RPC or network related problems.
+```
+ArbitrageError
+├─ ConfigError
+├─ NetworkError
+├─ DataError
+│   └─ PoolFetchError
+├─ TxBuildError
+└─ ExternalApiError
+```
+
+`PoolFetchError` inherits from `DataError` and is thrown when a DEX adapter fails to fetch pools. `TxBuildError` indicates a failure constructing a swap transaction. `NetworkError` wraps RPC related issues and is retried with exponential backoff. Any unrecoverable error is passed to `handleFatalError` which logs it and sends an alert when `ALERT_WEBHOOK` is configured.
 
 Example usage:
 
