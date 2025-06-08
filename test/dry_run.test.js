@@ -8,7 +8,8 @@ import { DexAdapter } from '../dex_adapters/baseAdapter.js';
 class MockAdapter extends DexAdapter {
   constructor() { super('mock'); this.called = false; }
   async fetchPools() { return [1]; }
-  async createSwapTransaction() { this.called = true; }
+  async fetchPrices(p) { return p; }
+  async buildTx() { this.called = true; }
 }
 
 test('dry run skips transaction creation', async () => {

@@ -1,6 +1,7 @@
 import { getLogger } from '../logger/index.js';
 import { NetworkError } from './errors.js';
 import fetch from 'node-fetch';
+import { sendTelegram } from '../notifier/telegram.js';
 
 /**
  * Send alert to external channel if ALERT_WEBHOOK env variable is set.
@@ -34,6 +35,7 @@ export async function handleNetworkError(error, retries = 3, baseDelay = 500) {
     await new Promise(r => setTimeout(r, delay));
   }
   logger.error(netErr);
+  await sendTelegram('WARNING', 'NETWORK', netErr.message);
 }
 
 /**
@@ -44,4 +46,5 @@ export async function handleFatalError(error) {
   const logger = getLogger();
   logger.error(`FATAL: ${error.stack || error.message}`);
   await sendAlert(`Fatal error: ${error.message}`);
+  await sendTelegram('CRITICAL', 'FATAL', error.message);
 }

@@ -8,6 +8,7 @@ import Joi from 'joi';
  * @property {string[]} mintList
  * @property {string[]} [address_lookup_tables]
  * @property {boolean} dryRun
+ * @property {{enabled:boolean,botToken:string,chatId:string,profitNotify:boolean}} [telegram]
  */
 
 const schema = Joi.object({
@@ -27,7 +28,13 @@ const schema = Joi.object({
   }).required(),
   mintList: Joi.array().items(Joi.string()).min(1).required(),
   address_lookup_tables: Joi.array().items(Joi.string()).optional(),
-  dryRun: Joi.boolean().default(false)
+  dryRun: Joi.boolean().default(false),
+  telegram: Joi.object({
+    enabled: Joi.boolean().default(false),
+    botToken: Joi.string().allow('').optional(),
+    chatId: Joi.string().allow('').optional(),
+    profitNotify: Joi.boolean().default(false)
+  }).default({ enabled: false })
 });
 
 /**

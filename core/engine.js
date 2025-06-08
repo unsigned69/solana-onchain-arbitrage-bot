@@ -1,6 +1,7 @@
 import { getLogger } from '../logger/index.js';
 import { PoolFetchError, TxBuildError, NetworkError } from '../utils/errors.js';
 import { handleNetworkError } from '../utils/errorHandler.js';
+import { sendTelegram } from '../notifier/telegram.js';
 
 /**
  * Asynchronous arbitrage engine independent from concrete DEX.
@@ -46,6 +47,9 @@ export class ArbitrageEngine {
     this.logger.dryRun(
       `${adapterName} simulate -> pools:${pools.length} profit:${profit.toFixed(2)} fee:${fee.toFixed(2)}`
     );
+    if (this.config.telegram?.profitNotify) {
+      sendTelegram('PROFIT', 'SIMULATE', `${adapterName} profit ${profit.toFixed(2)}`);
+    }
     return { profit, fee };
   }
 
@@ -63,11 +67,12 @@ export class ArbitrageEngine {
         const pools = await adapter.fetchPools(mint);
         this.logger.info(`${adapter.name} pools for ${mint}: ${pools?.length ?? 0}`);
         if (pools.length) {
+          const prices = await adapter.fetchPrices(pools);
           if (this.config.dryRun) {
-            results.push(this.simulateTransaction(adapter.name, pools));
+            results.push(this.simulateTransaction(adapter.name, prices));
           } else {
             try {
-              await adapter.createSwapTransaction(pools);
+              await adapter.buildTx(pools, prices);
             } catch (err) {
               throw new TxBuildError(adapter.name, err);
             }
