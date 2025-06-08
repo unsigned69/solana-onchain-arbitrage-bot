@@ -1,3 +1,4 @@
+# Pay attention! This bot was refactored via CODEX from OpeanAI. At the moment this is an experiment. All changes, improvements, and enhancements will be carried out by AI.
 # 🌟 Star Break 388 Open Source Arbitrage Contract
 # Solana On-Chain Arbitrage Bot
 
