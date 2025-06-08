@@ -461,35 +461,25 @@ Open a terminal/command prompt in the project folder
 
 Run:
 
-nginx
-Копировать
-Редактировать
+
 npm install
 Copy the example config:
 
-arduino
-Копировать
-Редактировать
+
 cp config/config.json.example config/config.json
 Edit config.json with your details (wallet, rpcUrl, Telegram bot if needed)
 
 Check your setup:
 
-pgsql
-Копировать
-Редактировать
+
 node start.js --check
 First run should be in dry run mode:
 
-pgsql
-Копировать
-Редактировать
+
 node start.js --dry-run
 If all is OK and there are no errors, run for real:
 
-nginx
-Копировать
-Редактировать
+
 node start.js
 2. Config Basics
 Q: Where do I get the correct config.json?
@@ -534,9 +524,7 @@ Download and install Node.js 18.x or higher from the official site
 
 Check your version:
 
-nginx
-Копировать
-Редактировать
+
 node -v
 Q: “config.json not found!”
 A:
@@ -575,8 +563,6 @@ A:
 The console will show messages like:
 
 yaml
-Копировать
-Редактировать
 ✅ Bot started, mode: dry run
 INFO: Checking DEX Raydium...
 PROFIT: Found a potential trade!
@@ -662,9 +648,6 @@ Check if the config format changed — see example config for new parameters
 
 Reinstall dependencies:
 
-nginx
-Копировать
-Редактировать
 npm install
 Q: How do I move the bot to another computer?
 A:
@@ -700,9 +683,7 @@ Did you copy and edit config.json?
 
 Run with --check:
 
-pgsql
-Копировать
-Редактировать
+
 node start.js --check
 Q: “Heartbeat fail” or “RPC not responding”
 A:
