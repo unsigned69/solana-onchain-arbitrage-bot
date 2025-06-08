@@ -26,6 +26,7 @@
     "enabled": false,
     "botToken": "",
     "chatId": "",
-    "profitNotify": false
+    "profitNotify": false,
+    "infoNotify": true
   }
 }

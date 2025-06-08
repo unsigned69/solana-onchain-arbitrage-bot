@@ -12,7 +12,20 @@ const THROTTLE_MS = 60_000;
  * @param {import('../config/index.js').Config['telegram']} cfg
  */
 export function configureTelegram(cfg = {}) {
-  telegramCfg = { enabled: false, profitNotify: false, ...cfg };
+  telegramCfg = {
+    enabled: false,
+    profitNotify: false,
+    infoNotify: true,
+    botToken: '',
+    chatId: '',
+    ...cfg
+  };
+  if (process.env.TELEGRAM_TOKEN) {
+    telegramCfg.botToken = process.env.TELEGRAM_TOKEN;
+  }
+  if (process.env.TELEGRAM_CHAT_ID) {
+    telegramCfg.chatId = process.env.TELEGRAM_CHAT_ID;
+  }
 }
 
 /**
@@ -24,14 +37,25 @@ export function configureTelegram(cfg = {}) {
  */
 export async function sendTelegram(level, type, message, extra) {
   if (!telegramCfg.enabled) return;
+  if (level === 'PROFIT' && !telegramCfg.profitNotify) return;
+  if (level === 'INFO' && !telegramCfg.infoNotify) return;
   const now = Date.now();
-  const key = `${level}:${type}`;
-  if (lastSent.has(key) && now - lastSent.get(key) < THROTTLE_MS) {
+  if (lastSent.has(level) && now - lastSent.get(level) < THROTTLE_MS) {
     return;
   }
-  lastSent.set(key, now);
+  lastSent.set(level, now);
   try {
-    const text = `[${level}] ${type} - ${message}` + (extra ? `\n\n${JSON.stringify(extra)}` : '');
+    const emojis = {
+      CRITICAL: '❗️',
+      ALERT: '🚨',
+      ERROR: '⚠️',
+      WARNING: '❕',
+      PROFIT: '💰',
+      INFO: 'ℹ️'
+    };
+    const text = `${emojis[level] || ''} [${level}] ${type}\n${message}` +
+      (extra ? `\n${JSON.stringify(extra)}` : '') +
+      `\n${new Date().toISOString()}`;
     const url = `https://api.telegram.org/bot${telegramCfg.botToken}/sendMessage`;
     await fetch(url, {
       method: 'POST',
@@ -41,4 +65,9 @@ export async function sendTelegram(level, type, message, extra) {
   } catch (e) {
     getLogger().error(`Telegram send failed: ${e.message}`);
   }
+}
+
+/** Clear throttle map for tests */
+export function _clearThrottle() {
+  lastSent.clear();
 }

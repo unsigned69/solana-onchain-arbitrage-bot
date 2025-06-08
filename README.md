@@ -340,31 +340,53 @@ Since our current arbitrage support is limited to WSOL, we need to ensure that `
 
 If you have more questions or need to report bugs, please join our discussion group: https://t.me/+t3Gexbnw0rs5NWQ1
 
-## 🛡 Production Monitoring
+## 🛎 Оповещения и мониторинг
 
-The bot runs a heartbeat that checks the Solana RPC and optional DEX endpoints.
-Results are written to `logs/health-*.log`. When the check fails three times in
-a row an **ALERT** level message is sent to Telegram. Recovery triggers an
-**INFO** notification.
+Бот может присылать уведомления в Telegram. Создайте бота через BotFather и
+возьмите `botToken`, а `chatId` получите из своего чата. Эти значения можно
+указать в конфиге или через переменные окружения `TELEGRAM_TOKEN` и
+`TELEGRAM_CHAT_ID`.
 
-Add a `telegram` section to your configuration:
+Пример секции `telegram` в `config.json`:
 
 ```json
 "telegram": {
   "enabled": true,
   "botToken": "YOUR_BOT_TOKEN",
   "chatId": "CHAT_ID",
-  "profitNotify": false
+  "profitNotify": false,
+  "infoNotify": true
 }
 ```
 
-Message levels:
+Доступны уровни сообщений:
 
-- **CRITICAL/ALERT** – engine crash, heartbeat failure or RPC outage
-- **ERROR** – transaction or arbitrage problems
-- **WARNING** – unusual but recoverable issues
-- **PROFIT** – optional trade reports (enable with `profitNotify`)
-- **INFO** – startup and recovery messages
+- **CRITICAL** – фатальный сбой, невозможность работы
+- **ALERT** – heartbeat несколько раз подряд неудачен
+- **ERROR** – проблемы транзакций или адаптеров
+- **WARNING** – необычное состояние, низкий профит
+- **PROFIT** – отчёт о сделке (по флагу `profitNotify`)
+- **INFO** – запуск и восстановление (по флагу `infoNotify`)
+
+Примеры сообщений:
+
+```
+🚨 [ALERT] HEARTBEAT
+failed 3 times
+2025-05-18T10:00:00Z
+```
+
+```
+💰 [PROFIT] SIMULATE
+raydium profit 1.23
+2025-05-18T10:01:00Z
+```
+
+```
+ℹ️ [INFO] HEARTBEAT
+recovered after failure
+2025-05-18T10:05:00Z
+```
 
 ## 🛠 Custom Error Classes
 
