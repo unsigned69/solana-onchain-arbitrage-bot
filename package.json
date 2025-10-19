@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_PATH=./node_modules node --experimental-specifier-resolution=node --test test"
+    "test": "NODE_PATH=./node_modules node --experimental-specifier-resolution=node --test test",
+    "parser:fetch": "ts-node --esm scripts/parser-cli.ts",
+    "parser:write": "ts-node --esm scripts/parser-cli.ts --write-config"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +22,10 @@
     "node-fetch": "^3.3.2",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }
